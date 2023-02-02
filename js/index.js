@@ -20,7 +20,6 @@
 
     //adds movie when the add button is clicked
     $('#addMovie').on('click', async function(){
-        // await addMovieToList(newMovie)
         await addMovieToList();
     });
 
