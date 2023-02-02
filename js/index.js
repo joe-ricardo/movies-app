@@ -20,7 +20,7 @@
 
     //adds movie when the add button is clicked
     $('#addMovie').on('click', async function(){
-        await addMovieToList(newMovie);
+        await addMovieToList();
     });
 
     //deletes movie when the delete button is clicked
@@ -57,10 +57,19 @@
      * @param newMovie an object with movie information
      * @returns {Promise<void>}
      */
-    async function addMovieToList(newMovie){
-         await addMovie(newMovie);
-         await getMovieList();
-         await deleteDropdown();
+    async function addMovieToList(){
+        let movieObject = {
+            title: $('#movieTitleField').val(),
+            year: $('#movieYearField').val(),
+            director: $('#movieDirectorField').val(),
+            rating: $('#movieRatingField').val(),
+            genre: $('#movieGenreField').val(),
+            actors: $('#movieActorField').val()
+        };
+
+        await addMovie(movieObject);
+        await getMovieList();
+        await deleteDropdown();
     }
 
     /** deleteMovieItem
