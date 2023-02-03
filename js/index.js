@@ -5,13 +5,32 @@
   // with your team name in the "js/movies-api.js" file.
 
   //generates initial movie list
-  await getMovieList();
 
+let movieList = await getMovieList();
+
+  console.log(movieList)
   //generates initial dropdown menu for delete
   await deleteDropdown();
 
   //generates initial dropdown menu for update
   await updateDropdown();
+
+  //api search bar
+  $("#apiSearchButton").on("click", async () => {
+    let apiData = await apiCall($("#apiSearchInput").val());
+    $("#movieTitleField").val(apiData.Title);
+    $("#movieYearField").val(apiData.Year);
+    $("#movieDirectorField").val(apiData.Director);
+    $("#movieRatingField").val(apiData.imdbRating);
+    $("#movieGenreField").val(apiData.Genre);
+    $("#movieActorField").val(apiData.Actors);
+  });
+
+  //movie search bar
+  $("#movieSearchButton").on("click", () => {
+    let searchInput = $('#movieSearchInput').val()
+    console.log(searchInput)
+  });
 
   //adds movie when the add button is clicked
   $("#addMovie").on("click", async function () {
@@ -25,7 +44,7 @@
 
   //updates a specific movie when the button is selected
   $("#updateMovieButton").on("click", async function () {
-    await updateMovieObject($('#updateDropdown').val());
+    await updateMovieObject($("#updateDropdown").val());
   });
 
   //event that fires off when update dropdown option changes
@@ -57,6 +76,7 @@
         <br><br>`;
     }
     $("#movies").html(movieHTML);
+    return movieList;
   }
 
   /** addMovieToList function
@@ -77,12 +97,12 @@
       actors: $("#movieActorField").val(),
     };
 
-    $("#movieTitleField").val('');
-    $("#movieYearField").val('');
-    $("#movieDirectorField").val('');
-    $("#movieRatingField").val('');
-    $("#movieGenreField").val('');
-    $("#movieActorField").val('');
+    $("#movieTitleField").val("");
+    $("#movieYearField").val("");
+    $("#movieDirectorField").val("");
+    $("#movieRatingField").val("");
+    $("#movieGenreField").val("");
+    $("#movieActorField").val("");
 
     await addMovie(movieObject);
     await regenerateMovieInformation();
@@ -159,7 +179,7 @@
     $("#updateMovieDirector").val(movieList[index].director);
     $("#updateMovieActors").val(movieList[index].actors);
     $("#updateMovieRating").val(movieList[index].rating);
-    $("#updateMovieYear").val(movieList[index].year);    
+    $("#updateMovieYear").val(movieList[index].year);
   }
 
   /** regenerateMovieInformation function
@@ -168,7 +188,7 @@
    * updateDropdown: refreshes the update dropdown list
    * @returns {Promise<void>}
    */
-  async function regenerateMovieInformation(){
+  async function regenerateMovieInformation() {
     await getMovieList();
     await deleteDropdown();
     await updateDropdown();
@@ -181,7 +201,7 @@
    * and store the HTML information with an index value and title
    * @returns {string} the HTML string generated
    */
-  async function generateDropDown(){
+  async function generateDropDown() {
     let movieList = await getMovies();
 
     let movieHTML = '<option value="blank" selected hidden></option>';
