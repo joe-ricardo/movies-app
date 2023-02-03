@@ -24,6 +24,18 @@ const getMovies = async () => {
   return await response.json();
 }
 
+const loadingMovies = async () => {
+    const url = "/movies";
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let response = await db.fetch(url, options);
+    return await response.json();
+  }
+
 // And here is a function that will add a new movie:
 const addMovie = async (movie) => {
   // "movie" is an object that contains the movie data
@@ -79,3 +91,10 @@ const updateMovie = async (movie) => {
     console.error(e);
   }
 }
+
+async function apiCall(title) {
+    let response = await fetch(
+      `http://www.omdbapi.com/?apikey=42a4533c&t=${encodeURIComponent(title)}`);
+    let data = await response.json();
+    return data;
+  }

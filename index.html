@@ -15,20 +15,32 @@
   </head>
   <body>
     <div id="page-wrapper">
+        <!-- search bar for array -->
+        <div>
+            <input type="text" id="movieSearchInput"/>
+            <button id="movieSearchButton">Search</button>
+        </div>
       <!-- div for dynamic generated movie list -->
       <div id="movies"></div>
       <!-- Div contains input fields and button for adding a movie -->
+      <div>
+        <input type="text" id="apiSearchInput"/>
+        <button id="apiSearchButton">Search</button>
+      </div>
       <div class="border border-dark">
         <div>
           <label class="text-uppercase" for="movieTitleField">title</label>
           <input id="movieTitleField" />
         </div>
+
         <div>
           <label class="text-uppercase" for="movieGenreField">genre</label>
           <input id="movieGenreField" />
         </div>
         <div>
-          <label class="text-uppercase" for="movieDirectorField">directors</label>
+          <label class="text-uppercase" for="movieDirectorField"
+            >directors</label
+          >
           <input id="movieDirectorField" />
         </div>
         <div>
@@ -50,33 +62,31 @@
 
       <!-- div for Update movie functionality -->
       <div>
-          <select id="updateDropdown"></select>
-          <div>
-              <label for="updateMovieTitle">Title</label>
-              <input type="text" id="updateMovieTitle" />
-          </div>
-          <div>
-              <label for="updateMovieGenre">Genre</label>
-              <input type="text" id="updateMovieGenre" />
-          </div>
-          <div>
-              <label for="updateMoiveDirector">Director</label>
-              <input type="text" id="updateMovieDirector" />
-          </div>
-          <div>
-              <label for="updateMovieActors">actors</label>
-              <input id="updateMovieActors" />
-          </div>
-          <div>
-
-              <label for="updateMovieRating">rating</label>
-              <input id="updateMovieRating" />
-          </div>
-          <div>
-
-              <label for="updateMovieYear">year</label>
-              <input id="updateMovieYear" />
-          </div>
+        <select id="updateDropdown"></select>
+        <div>
+          <label for="updateMovieTitle">Title</label>
+          <input type="text" id="updateMovieTitle" />
+        </div>
+        <div>
+          <label for="updateMovieGenre">Genre</label>
+          <input type="text" id="updateMovieGenre" />
+        </div>
+        <div>
+          <label for="updateMoiveDirector">Director</label>
+          <input type="text" id="updateMovieDirector" />
+        </div>
+        <div>
+          <label for="updateMovieActors">actors</label>
+          <input id="updateMovieActors" />
+        </div>
+        <div>
+          <label for="updateMovieRating">rating</label>
+          <input id="updateMovieRating" />
+        </div>
+        <div>
+          <label for="updateMovieYear">year</label>
+          <input id="updateMovieYear" />
+        </div>
         <br />
         <button id="updateMovieButton">Update Movie</button>
         <br />
