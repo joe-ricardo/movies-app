@@ -1,50 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Movies App</title>
-</head>
-<body>
-<div id="movies">
-</div>
-<label for="movieTitleField">title</label>
-<input id="movieTitleField">
-<label for="movieGenreField">genre</label>
-<input id="movieGenreField">
-<label for="movieDirectorField">directors</label>
-<input id="movieDirectorField">
-<label for="movieActorField">actors</label>
-<input id="movieActorField">
-<label for="movieRatingField">rating</label>
-<input id="movieRatingField">
-<label for="movieYearField">year</label>
-<input id="movieYearField">
-<br>
-<button id="addMovie">Add Movie</button>
-<br>
-<select id="deleteDropdown">
-    <option selected hidden></option>
-</select>
-<button id="deleteMovie">Delete Movie</button>
+  </head>
+  <body>
+    <div id="movies"></div>
+    <label for="movieTitleField">title</label>
+    <input id="movieTitleField" />
+    <label for="movieGenreField">genre</label>
+    <input id="movieGenreField" />
+    <label for="movieDirectorField">directors</label>
+    <input id="movieDirectorField" />
+    <label for="movieActorField">actors</label>
+    <input id="movieActorField" />
+    <label for="movieRatingField">rating</label>
+    <input id="movieRatingField" />
+    <label for="movieYearField">year</label>
+    <input id="movieYearField" />
+    <br />
+    <button id="addMovie">Add Movie</button>
+    <br />
+    <div>
+        <select id="updateDropdown">
+            <option value="blank" selected hidden></option>
+        </select>
+      <label for="updateMovieTitle">Title</label>
+      <input type="text" id="updateMovieTitle" />
+      <label for="updateMovieGenre">Genre</label>
+      <input type="text" id="updateMovieGenre" />
+      <label for="updateMoiveDirector">Director</label>
+      <input type="text" id="updateMovieDirector" />
+      <label for="updateMovieActors">actors</label>
+      <input id="updateMovieActors" />
+      <label for="updateMovieRating">rating</label>
+      <input id="updateMovieRating" />
+      <label for="updateMovieYear">year</label>
+      <input id="updateMovieYear" />
+      <br />
+      <button id="updateMovieButton">Update Movie</button>
+      <br />
+    </div>
 
-<!-- The core Firebase JS SDK and Databse library -->
-<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
 
-<!-- A local JS file to store the firebase API Key. WARNING: Do not commit this file -->
-<script src="js/keys.js"></script>
+    <select id="deleteDropdown">
+      <option value="" selected hidden></option>
+    </select>
+    <button id="deleteMovie">Delete Movie</button>
 
-<!-- Utilities and higher level functions to simplify database fetches -->
-<script src="js/firebase-config.js"></script>
+    <!-- The core Firebase JS SDK and Databse library -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
 
-<!-- jQuery file-->
-<script src="js/jquery-3.6.3.js"></script>
+    <!-- A local JS file to store the firebase API Key. WARNING: Do not commit this file -->
+    <script src="js/keys.js"></script>
 
-<!-- Your local JS file to add functions that interact with the database -->
-<script src="js/movies-api.js"></script>
+    <!-- Utilities and higher level functions to simplify database fetches -->
+    <script src="js/firebase-config.js"></script>
 
-<!-- Your local JS file to add functions that USE your functions from movies-api.js
+    <!-- jQuery file-->
+    <script src="js/jquery-3.6.3.js"></script>
+
+    <!-- Your local JS file to add functions that interact with the database -->
+    <script src="js/movies-api.js"></script>
+
+    <!-- Your local JS file to add functions that USE your functions from movies-api.js
     and INTERACT with the DOM -->
-<script src="js/index.js"></script>
-</body>
+    <script src="js/index.js"></script>
+  </body>
 </html>
