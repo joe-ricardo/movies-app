@@ -16,6 +16,7 @@
   //api search bar
   $("#apiSearchButton").on("click", async () => {
     let apiData = await apiCall($("#apiSearchInput").val());
+
     $("#movieTitleField").val(apiData.Title);
     $("#movieYearField").val(apiData.Year);
     $("#movieDirectorField").val(apiData.Director);
@@ -30,22 +31,22 @@
   });
 
   //adds movie when the add button is clicked
-  $("#addMovie").on("click", async function () {
+  $("#addMovie").on("click", async () => {
     await addMovieToList();
   });
 
   //deletes movie when the delete button is clicked
-  $("#deleteMovie").on("click", async function () {
+  $("#deleteMovie").on("click", async () => {
     await deleteMovieItem($("#deleteDropdown").val());
   });
 
   //updates a specific movie when the button is selected
-  $("#updateMovieButton").on("click", async function () {
+  $("#updateMovieButton").on("click", async () => {
     await updateMovieObject($("#updateDropdown").val());
   });
 
   //event that fires off when update dropdown option changes
-  $("#updateDropdown").on("change", async function () {
+  $("#updateDropdown").on("change", async () => {
     await movieUpdateSelected($("#updateDropdown").val());
   });
 
@@ -145,18 +146,27 @@
    * movieList: stores the list of movies retrieved by calling the getMovies function
    * uses the index value to get the selected movie from the movieList
    * the selected movie values are updated based on what is in the input boxes
+   * clears the input fields
    * regenerateMovieInformation refreshes the movie list and dropdown menus
    * @param index is the index of the selected move to update
    * @returns {Promise<void>}
    */
   async function updateMovieObject(index) {
     let movieList = await getMovies();
+
     movieList[index].title = $("#updateMovieTitle").val();
     movieList[index].genre = $("#updateMovieGenre").val();
     movieList[index].director = $("#updateMovieDirector").val();
     movieList[index].actors = $("#updateMovieActors").val();
     movieList[index].rating = $("#updateMovieRating").val();
     movieList[index].year = $("#updateMovieYear").val();
+
+    $("#updateMovieTitle").val("");
+    $("#updateMovieGenre").val("");
+    $("#updateMovieDirector").val("");
+    $("#updateMovieActors").val("");
+    $("#updateMovieRating").val("");
+    $("#updateMovieYear").val("");
 
     await updateMovie(movieList[index]);
     await regenerateMovieInformation();
