@@ -5,10 +5,8 @@
   // with your team name in the "js/movies-api.js" file.
 
   //generates initial movie list
+  await getMovieList();
 
-let movieList = await getMovieList();
-
-  console.log(movieList)
   //generates initial dropdown menu for delete
   await deleteDropdown();
 
@@ -28,8 +26,7 @@ let movieList = await getMovieList();
 
   //movie search bar
   $("#movieSearchButton").on("click", () => {
-    let searchInput = $('#movieSearchInput').val()
-    console.log(searchInput)
+    findMovieInDatabase($('#movieSearchInput').val());
   });
 
   //adds movie when the add button is clicked
@@ -58,6 +55,7 @@ let movieList = await getMovieList();
    * uses the getMovies function to retrieve a list of the movies,
    * generates an html string,
    * and populates html string to div #movies
+   * @returns list of movie objects
    * @returns {Promise<void>}
    */
   async function getMovieList() {
@@ -212,5 +210,33 @@ let movieList = await getMovieList();
         `;
     }
     return movieHTML;
+  }
+
+  /** findMovieInDatabase function
+   * movieList: gets list of movies in database
+   * movieHTML: will hold the final html string to post
+   * this function will search the movie database to check for any movies that match the search result,
+   * each result found will be added to the movieHTML,
+   * and finally will be posted to the #movies id
+   * @param searchArg title search parameter entered by the user
+   * @returns {Promise<void>}
+   */
+  async function findMovieInDatabase(searchArg){
+    let movieList = await getMovieList();
+    let movieHTML = "";
+
+    for(let movie of movieList){
+      if(movie.title.toLowerCase().search(searchArg.toLowerCase()) !== -1){
+        movieHTML += `
+        ${movie.title},<br>
+        ${movie.genre},<br>
+        ${movie.director},<br>
+        ${movie.actors},<br>
+        ${movie.rating},<br>
+        ${movie.year} 
+        <br><br>`;
+      }
+    }
+    $("#movies").html(movieHTML);
   }
 })();
