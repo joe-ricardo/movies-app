@@ -92,6 +92,8 @@ const updateMovie = async (movie) => {
   }
 }
 
+//this function will call a movie api searching with the given title,
+//returning the respective movie data if found
 async function apiCall(title) {
     let response = await fetch(
       `http://www.omdbapi.com/?apikey=42a4533c&t=${encodeURIComponent(title)}`);
