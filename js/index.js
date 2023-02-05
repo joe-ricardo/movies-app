@@ -5,10 +5,8 @@
   // with your team name in the "js/movies-api.js" file.
 
   //generates initial movie list
+  await getMovieList();
 
-let movieList = await getMovieList();
-
-  console.log(movieList)
   //generates initial dropdown menu for delete
   await deleteDropdown();
 
@@ -18,6 +16,7 @@ let movieList = await getMovieList();
   //api search bar
   $("#apiSearchButton").on("click", async () => {
     let apiData = await apiCall($("#apiSearchInput").val());
+
     $("#movieTitleField").val(apiData.Title);
     $("#movieYearField").val(apiData.Year);
     $("#movieDirectorField").val(apiData.Director);
@@ -28,27 +27,26 @@ let movieList = await getMovieList();
 
   //movie search bar
   $("#movieSearchButton").on("click", () => {
-    let searchInput = $('#movieSearchInput').val()
-    console.log(searchInput)
+    findMovieInDatabase($('#movieSearchInput').val());
   });
 
   //adds movie when the add button is clicked
-  $("#addMovie").on("click", async function () {
+  $("#addMovie").on("click", async () => {
     await addMovieToList();
   });
 
   //deletes movie when the delete button is clicked
-  $("#deleteMovie").on("click", async function () {
+  $("#deleteMovie").on("click", async () => {
     await deleteMovieItem($("#deleteDropdown").val());
   });
 
   //updates a specific movie when the button is selected
-  $("#updateMovieButton").on("click", async function () {
+  $("#updateMovieButton").on("click", async () => {
     await updateMovieObject($("#updateDropdown").val());
   });
 
   //event that fires off when update dropdown option changes
-  $("#updateDropdown").on("change", async function () {
+  $("#updateDropdown").on("change", async () => {
     await movieUpdateSelected($("#updateDropdown").val());
   });
 
@@ -58,6 +56,7 @@ let movieList = await getMovieList();
    * uses the getMovies function to retrieve a list of the movies,
    * generates an html string,
    * and populates html string to div #movies
+   * @returns list of movie objects
    * @returns {Promise<void>}
    */
   async function getMovieList() {
@@ -147,18 +146,27 @@ let movieList = await getMovieList();
    * movieList: stores the list of movies retrieved by calling the getMovies function
    * uses the index value to get the selected movie from the movieList
    * the selected movie values are updated based on what is in the input boxes
+   * clears the input fields
    * regenerateMovieInformation refreshes the movie list and dropdown menus
    * @param index is the index of the selected move to update
    * @returns {Promise<void>}
    */
   async function updateMovieObject(index) {
     let movieList = await getMovies();
+
     movieList[index].title = $("#updateMovieTitle").val();
     movieList[index].genre = $("#updateMovieGenre").val();
     movieList[index].director = $("#updateMovieDirector").val();
     movieList[index].actors = $("#updateMovieActors").val();
     movieList[index].rating = $("#updateMovieRating").val();
     movieList[index].year = $("#updateMovieYear").val();
+
+    $("#updateMovieTitle").val("");
+    $("#updateMovieGenre").val("");
+    $("#updateMovieDirector").val("");
+    $("#updateMovieActors").val("");
+    $("#updateMovieRating").val("");
+    $("#updateMovieYear").val("");
 
     await updateMovie(movieList[index]);
     await regenerateMovieInformation();
@@ -212,5 +220,33 @@ let movieList = await getMovieList();
         `;
     }
     return movieHTML;
+  }
+
+  /** findMovieInDatabase function
+   * movieList: gets list of movies in database
+   * movieHTML: will hold the final html string to post
+   * this function will search the movie database to check for any movies that match the search result,
+   * each result found will be added to the movieHTML,
+   * and finally will be posted to the #movies id
+   * @param searchArg title search parameter entered by the user
+   * @returns {Promise<void>}
+   */
+  async function findMovieInDatabase(searchArg){
+    let movieList = await getMovieList();
+    let movieHTML = "";
+
+    for(let movie of movieList){
+      if(movie.title.toLowerCase().search(searchArg.toLowerCase()) !== -1){
+        movieHTML += `
+        ${movie.title},<br>
+        ${movie.genre},<br>
+        ${movie.director},<br>
+        ${movie.actors},<br>
+        ${movie.rating},<br>
+        ${movie.year} 
+        <br><br>`;
+      }
+    }
+    $("#movies").html(movieHTML);
   }
 })();
