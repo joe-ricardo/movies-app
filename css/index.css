@@ -1,7 +1,10 @@
-/* #page-wrapper{
-    background-image: url(../images/movie-website-background.png);
-    background-size: 100vh 100vw;
+.movieCards {
+    height: 30rem;
+    width: 20rem;
 }
-*{
-    color: white;
-} */
+
+img {
+    height: 354px;
+    width: 239px;
+    object-fit: contain;
+}

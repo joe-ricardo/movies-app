@@ -61,18 +61,24 @@
    */
   async function getMovieList() {
     let movieList = await getMovies();
-
     let movieHTML = "";
 
     for (let movie of movieList) {
+      let posterData = await apiCall(movie.title);
+      let poster = posterData.Poster;
       movieHTML += `
-        ${movie.title},<br>
-        ${movie.genre},<br>
-        ${movie.director},<br>
-        ${movie.actors},<br>
-        ${movie.rating},<br>
-        ${movie.year} 
-        <br><br>`;
+        <div class="card movieCards">
+        <div class="card-header text-center fs-4 bg-primary text-light">${movie.title}</div>
+        <div class="card-body bg-dark-subtle"><img src="${poster}" class="w-100"></div>
+        <div class="card-footer text-center bg-primary text-light">
+        <div>${movie.genre}</div>
+        <div>Directed By: ${movie.director}</div>
+        <div>Starring: ${movie.actors}</div>
+        <div>Rating: ${movie.rating}/10</div>
+        <div>Released: ${movie.year}</div>
+        </div>
+        </div>
+        <br>`;
     }
     $("#movies").html(movieHTML);
     return movieList;
