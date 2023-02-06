@@ -118,7 +118,7 @@
    * @returns {Promise<void>}
    */
   async function deleteDropdown() {
-    let movieHTMLString = await generateDropDown();
+    let movieHTMLString = await generateDropDown('Select a Movie to Delete');
 
     $("#deleteDropdown").html(movieHTMLString);
   }
@@ -129,7 +129,7 @@
    * @returns {Promise<void>}
    */
   async function updateDropdown() {
-    let movieHTMLString = await generateDropDown();
+    let movieHTMLString = await generateDropDown('Select a Movie to Update');
 
     $("#updateDropdown").html(movieHTMLString);
   }
@@ -201,10 +201,10 @@
    * and store the HTML information with an index value and title
    * @returns {string} the HTML string generated
    */
-  async function generateDropDown() {
+  async function generateDropDown(hiddenOption) {
     let movieList = await getMovies();
 
-    let movieHTML = '<option value="blank" selected hidden></option>';
+    let movieHTML = `<option value="blank" selected hidden>${hiddenOption}</option>`;
 
     for (let i = 0; i < movieList.length; i++) {
       movieHTML += `

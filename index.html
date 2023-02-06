@@ -39,7 +39,7 @@
           </button>
 
           <div
-            class="offcanvas offcanvas-end bg-primary"
+            class="offcanvas offcanvas-end bg-dark-subtle"
             tabindex="-1"
             id="offcanvasAddMovie"
           >
@@ -54,52 +54,46 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div>
-              <div class="offcanvas-body">
-                <input type="text" id="apiSearchInput" />
-                <button id="apiSearchButton">Search</button>
-              </div>
-              <div class="">
-                <div>
-                  <label class="text-uppercase" for="movieTitleField"
-                    >title</label
-                  >
-                  <input id="movieTitleField" />
+            <div class="offcanvas-body">
+              <div>
+                <div class="pb-3">
+                  <input
+                    type="text"
+                    id="apiSearchInput"
+                    placeholder="Search a Movie Title"
+                  />
+                  <button id="apiSearchButton">Search</button>
                 </div>
+                <div class="text-capitalize">
+                  <div class="py-2">
+                    <input id="movieTitleField" />
+                    <label for="movieTitleField">title</label>
+                  </div>
 
-                <div>
-                  <label class="text-uppercase" for="movieGenreField"
-                    >genre</label
-                  >
-                  <input id="movieGenreField" />
+                  <div class="py-2">
+                    <input id="movieGenreField" />
+                    <label for="movieGenreField">genre</label>
+                  </div>
+                  <div class="py-2">
+                    <input id="movieDirectorField" />
+                    <label for="movieDirectorField">directors</label>
+                  </div>
+                  <div class="py-2">
+                    <input id="movieActorField" />
+                    <label for="movieActorField">actors</label>
+                  </div>
+                  <div class="py-2">
+                    <input id="movieRatingField" />
+                    <label for="movieRatingField">rating</label>
+                  </div>
+                  <div class="py-2">
+                    <input id="movieYearField" />
+                    <label for="movieYearField">year</label>
+                  </div>
+                  <button class="btn btn-primary py-2" id="addMovie">
+                    Add Movie
+                  </button>
                 </div>
-                <div>
-                  <label class="text-uppercase" for="movieDirectorField"
-                    >directors</label
-                  >
-                  <input id="movieDirectorField" />
-                </div>
-                <div>
-                  <label class="text-uppercase" for="movieActorField"
-                    >actors</label
-                  >
-                  <input id="movieActorField" />
-                </div>
-                <div>
-                  <label class="text-uppercase" for="movieRatingField"
-                    >rating</label
-                  >
-                  <input id="movieRatingField" />
-                </div>
-                <div>
-                  <label class="text-uppercase" for="movieYearField"
-                    >year</label
-                  >
-                  <input id="movieYearField" />
-                </div>
-                <br />
-                <button id="addMovie">Add Movie</button>
-                <br />
               </div>
             </div>
           </div>
@@ -117,7 +111,7 @@
           </button>
 
           <div
-            class="offcanvas offcanvas-end"
+            class="offcanvas offcanvas-end bg-dark-subtle"
             tabindex="-1"
             id="offcanvasUpdateMovie"
             aria-labelledby="offcanvasUpdateMovieLabel"
@@ -134,44 +128,48 @@
               ></button>
             </div>
             <div class="offcanvas-body">
-              <div>
-                <label for="updateDropdown">Select a Movie</label>
-                <select id="updateDropdown"></select>
-                <div>
-                  <label for="updateMovieTitle">Title</label>
+              <div class="py-2 text-capitalize">
+                <div class="pb-3">
+                  <select id="updateDropdown"></select>
+                </div>
+                <div class="py-2">
                   <input type="text" id="updateMovieTitle" />
+                  <label for="updateMovieTitle">Title</label>
                 </div>
-                <div>
-                  <label for="updateMovieGenre">Genre</label>
+                <div class="py-2">
                   <input type="text" id="updateMovieGenre" />
+                  <label for="updateMovieGenre">Genre</label>
                 </div>
-                <div>
-                  <label for="updateMoiveDirector">Director</label>
+                <div class="py-2">
                   <input type="text" id="updateMovieDirector" />
+                  <label for="updateMoiveDirector">Director</label>
                 </div>
-                <div>
-                  <label for="updateMovieActors">actors</label>
+                <div class="py-2">
                   <input id="updateMovieActors" />
+                  <label for="updateMovieActors">actors</label>
                 </div>
-                <div>
-                  <label for="updateMovieRating">rating</label>
+                <div class="py-2">
                   <input id="updateMovieRating" />
+                  <label for="updateMovieRating">rating</label>
                 </div>
-                <div>
-                  <label for="updateMovieYear">year</label>
+                <div class="py-2">
                   <input id="updateMovieYear" />
+                  <label for="updateMovieYear">year</label>
                 </div>
                 <br />
-                <button id="updateMovieButton">Update Movie</button>
+                <button class="btn btn-success" id="updateMovieButton">
+                  Update Movie
+                </button>
                 <br />
-
-                <!-- Dropdown for deleting movies -->
-                <div>
-                  <label for="deleteDropdown">Select a Movie to Delete</label>
-                  <select id="deleteDropdown"></select>
-                  <button id="deleteMovie">Delete Movie</button>
-                </div>
               </div>
+              <!-- Dropdown for deleting movies -->
+              <div class="pt-5 pb-3">
+                <h5 class="py-4">Delete a Movie</h5>
+                <select id="deleteDropdown"></select>
+              </div>
+              <button class="btn btn-danger" id="deleteMovie">
+                Delete Movie
+              </button>
             </div>
           </div>
         </div>

@@ -23,6 +23,9 @@ img {
     grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
     align-items: center;
     justify-items: center;
+    background-image: url(../images/background-img.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #movies {
