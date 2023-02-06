@@ -54,7 +54,7 @@
    * movieList: stores the list of movies retrieved by calling the getMovies function
    * movieHTML: the string that will store the html information to be stored in the div #movies
    * uses the getMovies function to retrieve a list of the movies,
-   * generates an html string,
+   * generates an html string with the generateHTML function,
    * and populates html string to div #movies
    * @returns list of movie objects
    * @returns {Promise<void>}
@@ -64,21 +64,7 @@
     let movieHTML = "";
 
     for (let movie of movieList) {
-      let posterData = await apiCall(movie.title);
-      let poster = posterData.Poster;
-      movieHTML += `
-        <div class="card movieCards">
-        <div class="card-header text-center fs-4 bg-primary text-light">${movie.title}</div>
-        <div class="card-body bg-dark-subtle"><img src="${poster}" class="w-100"></div>
-        <div class="card-footer text-center bg-primary text-light">
-        <div>${movie.genre}</div>
-        <div>Directed By: ${movie.director}</div>
-        <div>Starring: ${movie.actors}</div>
-        <div>Rating: ${movie.rating}/10</div>
-        <div>Released: ${movie.year}</div>
-        </div>
-        </div>
-        <br>`;
+      movieHTML += await generateHTML(movie);
     }
     $("#movies").html(movieHTML);
     return movieList;
@@ -232,27 +218,44 @@
    * movieList: gets list of movies in database
    * movieHTML: will hold the final html string to post
    * this function will search the movie database to check for any movies that match the search result,
-   * each result found will be added to the movieHTML,
+   * calls generateHTML to create the html,
    * and finally will be posted to the #movies id
    * @param searchArg title search parameter entered by the user
    * @returns {Promise<void>}
    */
-  async function findMovieInDatabase(searchArg){
+  async function findMovieInDatabase(searchArg) {
     let movieList = await getMovieList();
     let movieHTML = "";
 
     for(let movie of movieList){
       if(movie.title.toLowerCase().search(searchArg.toLowerCase()) !== -1){
-        movieHTML += `
-        ${movie.title},<br>
-        ${movie.genre},<br>
-        ${movie.director},<br>
-        ${movie.actors},<br>
-        ${movie.rating},<br>
-        ${movie.year} 
-        <br><br>`;
+        movieHTML += await generateHTML(movie);
       }
     }
     $("#movies").html(movieHTML);
+  }
+
+  /** generateHTML function
+   * posterData = calls api to get movie information
+   * returns the html in desired format
+   * @param movie is the movie object
+   * @returns {Promise<string>}
+   */
+  async function generateHTML(movie){
+    let posterData = await apiCall(movie.title);
+
+    return `
+        <div class="card movieCards">
+        <div class="card-header text-center fs-4 bg-primary text-light">${movie.title}</div>
+        <div class="card-body bg-dark-subtle"><img src="${posterData.Poster}" class="w-100"></div>
+        <div class="card-footer text-center bg-primary text-light">
+        <div>${movie.genre}</div>
+        <div>Directed By: ${movie.director}</div>
+        <div>Starring: ${movie.actors}</div>
+        <div>Rating: ${movie.rating}/10</div>
+        <div>Released: ${movie.year}</div>
+        </div>
+        </div>
+        <br>`;
   }
 })();
