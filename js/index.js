@@ -245,16 +245,25 @@
     let posterData = await apiCall(movie.title);
 
     return `
-        <div class="card movieCards">
-        <div class="card-header text-center fs-4 bg-primary text-light">${movie.title}</div>
-        <div class="card-body bg-dark-subtle"><img src="${posterData.Poster}" class="w-100"></div>
-        <div class="card-footer text-center bg-primary text-light">
-        <div>${movie.genre}</div>
-        <div>Directed By: ${movie.director}</div>
-        <div>Starring: ${movie.actors}</div>
-        <div>Rating: ${movie.rating}/10</div>
-        <div>Released: ${movie.year}</div>
-        </div>
+        <div class="item">
+          <div class=" movieCards flip-card py-4">
+            <div class="flip-card-inner">
+              <div class=" flip-card-front">
+                <img src="${posterData.Poster}" class="w-100">
+              </div>
+              <div class="flip-card-back">
+                <div class="text-center fs-4 fw-bold text-capitalize px-3 ">${movie.title}</div>
+                <div class="text-center pt-3 px-3">Plot:</div>
+                <div class="pb-3 ">${posterData.Plot}</div>
+                <div class="text-capitalize py-1 px-3">${movie.genre}</div>
+                <div class="text-capitalize py-1 px-3">Directed By: ${movie.director}</div>
+                <div class="text-capitalize py-1 px-3">Starring: ${movie.actors}</div>
+                <div class="text-capitalize py-1 px-3">Rating: ${movie.rating}/10</div>
+                <div class="text-capitalize py-1 px-3">Released: ${movie.year}</div>
+              </div>
+            </div>
+            <br>
+          </div>
         </div>
         <br>`;
   }
