@@ -15,91 +15,179 @@
   </head>
   <body>
     <div id="page-wrapper">
-        <!-- search bar for array -->
+      <!-- Navigation bar -->
+      <header class="d-flex justify-content-between">
         <div>
-            <h1>Movie App</h1>
-            <input type="text" id="movieSearchInput" placeholder="Enter the Title Search"/>
-            <button id="movieSearchButton">Search</button>
+          <input
+            type="text"
+            id="movieSearchInput"
+            placeholder="Enter the Title Search"
+          />
+          <button id="movieSearchButton">Search</button>
         </div>
-      <!-- div for dynamic generated movie list -->
-      <div id="movies"></div>
-      <!-- Div contains input fields and button for adding a movie -->
-      <div>
-        <input type="text" id="apiSearchInput"/>
-        <button id="apiSearchButton">Search</button>
-      </div>
-      <div class="border border-dark">
+        <h1 class="text-light">Movie App</h1>
         <div>
-          <label class="text-uppercase" for="movieTitleField">title</label>
-          <input id="movieTitleField" />
-        </div>
-
-        <div>
-          <label class="text-uppercase" for="movieGenreField">genre</label>
-          <input id="movieGenreField" />
-        </div>
-        <div>
-          <label class="text-uppercase" for="movieDirectorField"
-            >directors</label
+          <!-- Div contains input fields and button for adding a movie -->
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasAddMovie"
+            aria-controls="offcanvasRight"
           >
-          <input id="movieDirectorField" />
-        </div>
-        <div>
-          <label class="text-uppercase" for="movieActorField">actors</label>
-          <input id="movieActorField" />
-        </div>
-        <div>
-          <label class="text-uppercase" for="movieRatingField">rating</label>
-          <input id="movieRatingField" />
-        </div>
-        <div>
-          <label class="text-uppercase" for="movieYearField">year</label>
-          <input id="movieYearField" />
-        </div>
-        <br />
-        <button id="addMovie">Add Movie</button>
-        <br />
-      </div>
+            Add a Movie
+          </button>
 
-      <!-- div for Update movie functionality -->
-      <div>
-        <label for="updateDropdown">Select a Movie</label>
-        <select id="updateDropdown"></select>
-        <div>
-          <label for="updateMovieTitle">Title</label>
-          <input type="text" id="updateMovieTitle" />
+          <div
+            class="offcanvas offcanvas-end bg-primary"
+            tabindex="-1"
+            id="offcanvasAddMovie"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasAddMovieLabel">
+                Add a Movie
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div>
+              <div class="offcanvas-body">
+                <input type="text" id="apiSearchInput" />
+                <button id="apiSearchButton">Search</button>
+              </div>
+              <div class="">
+                <div>
+                  <label class="text-uppercase" for="movieTitleField"
+                    >title</label
+                  >
+                  <input id="movieTitleField" />
+                </div>
+
+                <div>
+                  <label class="text-uppercase" for="movieGenreField"
+                    >genre</label
+                  >
+                  <input id="movieGenreField" />
+                </div>
+                <div>
+                  <label class="text-uppercase" for="movieDirectorField"
+                    >directors</label
+                  >
+                  <input id="movieDirectorField" />
+                </div>
+                <div>
+                  <label class="text-uppercase" for="movieActorField"
+                    >actors</label
+                  >
+                  <input id="movieActorField" />
+                </div>
+                <div>
+                  <label class="text-uppercase" for="movieRatingField"
+                    >rating</label
+                  >
+                  <input id="movieRatingField" />
+                </div>
+                <div>
+                  <label class="text-uppercase" for="movieYearField"
+                    >year</label
+                  >
+                  <input id="movieYearField" />
+                </div>
+                <br />
+                <button id="addMovie">Add Movie</button>
+                <br />
+              </div>
+            </div>
+          </div>
+
+          <!-- div for Update movie functionality -->
+
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasUpdateMovie"
+            aria-controls="offcanvasRight"
+          >
+            Update/Delete a Movie
+          </button>
+
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasUpdateMovie"
+            aria-labelledby="offcanvasUpdateMovieLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasUpdateMovieLabel">
+                Update a Movie
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <div>
+                <label for="updateDropdown">Select a Movie</label>
+                <select id="updateDropdown"></select>
+                <div>
+                  <label for="updateMovieTitle">Title</label>
+                  <input type="text" id="updateMovieTitle" />
+                </div>
+                <div>
+                  <label for="updateMovieGenre">Genre</label>
+                  <input type="text" id="updateMovieGenre" />
+                </div>
+                <div>
+                  <label for="updateMoiveDirector">Director</label>
+                  <input type="text" id="updateMovieDirector" />
+                </div>
+                <div>
+                  <label for="updateMovieActors">actors</label>
+                  <input id="updateMovieActors" />
+                </div>
+                <div>
+                  <label for="updateMovieRating">rating</label>
+                  <input id="updateMovieRating" />
+                </div>
+                <div>
+                  <label for="updateMovieYear">year</label>
+                  <input id="updateMovieYear" />
+                </div>
+                <br />
+                <button id="updateMovieButton">Update Movie</button>
+                <br />
+
+                <!-- Dropdown for deleting movies -->
+                <div>
+                  <label for="deleteDropdown">Select a Movie to Delete</label>
+                  <select id="deleteDropdown"></select>
+                  <button id="deleteMovie">Delete Movie</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label for="updateMovieGenre">Genre</label>
-          <input type="text" id="updateMovieGenre" />
-        </div>
-        <div>
-          <label for="updateMoiveDirector">Director</label>
-          <input type="text" id="updateMovieDirector" />
-        </div>
-        <div>
-          <label for="updateMovieActors">actors</label>
-          <input id="updateMovieActors" />
-        </div>
-        <div>
-          <label for="updateMovieRating">rating</label>
-          <input id="updateMovieRating" />
-        </div>
-        <div>
-          <label for="updateMovieYear">year</label>
-          <input id="updateMovieYear" />
-        </div>
-        <br />
-        <button id="updateMovieButton">Update Movie</button>
-        <br />
+      </header>
+
+      <!-- div for dynamic generated movie list -->
+      <div id="topContainer">
+        <input type="radio" name="position" checked />
+        <input type="radio" name="position" />
+        <input type="radio" name="position" />
+        <input type="radio" name="position" />
+        <input type="radio" name="position" />
+        <div id="movies"></div>
       </div>
 
       <!-- Dropdown for deleting movies -->
-      <div>
-        <label for="deleteDropdown">Select a Movie to Delete</label>
-        <select id="deleteDropdown"></select>
-        <button id="deleteMovie">Delete Movie</button>
-      </div>
     </div>
     <!-- The core Firebase JS SDK and Databse library -->
     <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
@@ -127,7 +215,5 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
-
-    
   </body>
 </html>
