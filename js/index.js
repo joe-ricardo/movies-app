@@ -224,7 +224,7 @@
    * @returns {Promise<void>}
    */
   async function findMovieInDatabase(searchArg) {
-    let movieList = await getMovieList();
+    let movieList = await getMovies();
     let movieHTML = "";
 
     for(let movie of movieList){
